@@ -1,0 +1,96 @@
+{% extends "SdtAdvertBundle::layout.html.twig" %}
+
+{% block title %}Annonces de Troubadours{% endblock %}
+
+{% block content %}
+	<h1>Annonces de Troubadours</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Recherche</h2>
+        </div>
+        <div class="content">
+			<form action="{{ path('SdtAdvertBundle_advert_index') }}" method="get" {{ form_enctype(form) }}>
+				<div class="input">
+					<label>Vous êtes un</label>
+					{{ form_widget(form.category) }}
+				</div>
+
+				<div class="input">
+					<label>À la recherche de</label>
+					{{ form_widget(form.lookingFor) }}
+				</div>
+
+				<div class="input">
+					<label>Agé de</label>
+					{{ form_widget(form.ageMin) }} - {{ form_widget(form.ageMax) }}
+				</div>
+
+				<div class="input">
+					<label>Dans la région de</label>
+					{{ form_widget(form.locale) }}
+					<strong>Aide:</strong> Ctrl + clic pour sélectionner plusieurs départements.
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Liste des sujets</h2>
+        </div>
+        <div class="content">
+        	<div class="submit">
+        		<a href="{{ path('SdtAdvertBundle_advert_create') }}"><input type="submit" value="Nouvelle annonce" /></a>
+        	</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Profil</th>
+						<th>Titre de l'annonce</th>
+						<th>Lieu</th>
+						<th>Auteur</th>
+						<th>Date de publication</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for advert in pagination %}
+						<tr>
+							<td>{{ advert.category }}</td>
+							<td><a href="{{ path('SdtAdvertBundle_advert_show', {'slug': advert.slug }) }}">{{ advert.title }}</a></td>
+							<td>{{ advert.locale }}</td>
+							<td>
+								{{ advert.author }}<br />
+								{% if advert.ageMin != advert.ageMax %}
+									{{ advert.ageMin }} - {{ advert.ageMax }} ans
+								{% else %}
+									{{ advert.ageMin }} ans
+								{% endif %}
+							</td>
+							<td>{{ advert.createdAt|date('d-m-Y à H:m:s') }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<div class="submit">
+        		<a href="{{ path('SdtAdvertBundle_advert_create') }}"><input type="submit" value="Nouvelle annonce" /></a>
+        	</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

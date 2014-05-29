@@ -1,0 +1,11 @@
+SdtSessionBundle_index:
+    pattern:  /cours
+    defaults: { _controller: SdtSessionBundle:Teacher:index }
+
+SdtSessionBundle_teacher_create:
+    pattern:  /cours/donner-des-cours
+    defaults: { _controller: SdtSessionBundle:Teacher:create }
+
+SdtSessionBundle_teacher_show:
+    pattern:  /cours/{id}
+    defaults: { _controller: SdtSessionBundle:Teacher:show }

@@ -1,0 +1,11 @@
+SdtForumBundle_forum_index:
+    pattern:  /forum
+    defaults: { _controller: SdtForumBundle:Forum:index }
+
+SdtForumBundle_forum_show:
+    pattern: /forum/categorie/{slug}
+    defaults: { _controller: SdtForumBundle:Forum:show }
+
+SdtForumBundle_topic_show:
+    pattern: /forum/sujet/{slug}
+    defaults: { _controller: SdtForumBundle:Topic:show }

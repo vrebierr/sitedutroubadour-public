@@ -1,0 +1,52 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+	<h1>Connexion</h1>
+
+	<div class="bloc left">
+	    <div class="title">
+	        <h2>Formulaire de connexion</h2>
+	     </div>
+	     <div class="content">
+			<form class="form-horizontal" action="{{ path('fos_user_security_check') }}" method="post">
+				<div class="input">
+	                <label>Nom d'utilisateur / adresse email</label>
+	                <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="exemple@exemple.com" />
+	            </div>
+
+	            <div class="input">
+	                <label>Votre mot de passe</label>
+	                <input type="password" id="password" name="_password" placeholder="s3cr3t" />
+	            </div>
+
+	            <div class="input">
+	                <label>Options</label>
+	                <input type="checkbox" id="remember_me" name="_remember_me" checked />
+					{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+	            </div>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+				<div class="submit">
+					<input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="bloc right">
+	    <div class="title">
+	        <h2>Connexion via Facebook et Google</h2>
+	     </div>
+	     <div class="content">
+			<a class="button" href="{{ hwi_oauth_login_url('facebook') }}">
+				<img src="/img/icons/menu/facebook.png" alt="" />
+				Connexion avec Facebook
+			</a>
+			<a class="button black" href="{{ hwi_oauth_login_url('google') }}">
+				<img src="/img/icons/menu/vcard.png" alt="" />
+				Connexion avec Google
+			</a>
+		</div>
+	</div>
+{% endblock content %}

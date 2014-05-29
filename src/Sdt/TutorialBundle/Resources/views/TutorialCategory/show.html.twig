@@ -1,0 +1,28 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+    	<a href="{{ path('SdtTutorialBundle_tutorialcategory_show', {'id': category.id, 'slug': category.slug }) }}">{{ category.name }}</a> <span class="divider">/</span> Liste des tutoriels
+    </li>
+{% endblock %}
+
+{% block content %}
+	<h2>{{ category.name }}</h2>
+
+	<ul class="thumbnails">
+		{% for tuto in tutos %}
+			<li class="span3">
+				<h3>{{ tuto.title }}</h3>
+
+				<a class="thumbnail" href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">
+					{% thumbnail tuto.media, 'small' %}
+				</a>
+
+				<p>{{ tuto.description }}</p>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'SdtSessionBundle::layout.html.twig' %}
+
+{% block title %}Donner des cours vidéos{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        Donner des cours vidéos
+    </li>
+{% endblock %}
+
+{% block content %}
+	<div class="row" style="margin-left: 0px;">
+		<form class="well form-horizontal" action="{{ path('SdtSessionBundle_teacher_create') }}" method="post" {{ form_enctype(form) }}>
+			<fieldset>
+				<legend>Informations personnelles</legend>
+
+				<div class="control-group">
+					<label class="control-label">Nom</label>
+					<div class="controls">
+						{{ form_widget(form.firstname, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Prénom</label>
+					<div class="controls">
+						{{ form_widget(form.lastname, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Ligne d'adresse 1</label>
+					<div class="controls">
+						{{ form_widget(form.address1, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Ligne d'adresse 2</label>
+					<div class="controls">
+						{{ form_widget(form.address2, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Code postal</label>
+					<div class="controls">
+						{{ form_widget(form.zipcode, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Ville</label>
+					<div class="controls">
+						{{ form_widget(form.city, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Vos compètences</legend>
+
+				<div class="control-group">
+					<label class="control-label">Votre annonce</label>
+					<div class="controls">
+						{{ form_widget(form.advert, { 'attr': {'class': 'input-xlarge tinymce', 'rows': '15', 'data-theme': 'simple', 'style': 'width: 100%;'} }) }}
+						<span class="help-block"><i class="icon-upload"></i> <a href="{{ path('application_sonata_media_upload') }}" data-toggle="modal" target="_blank">Upload d'un media</a></span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Prix de l'heure</label>
+					<div class="controls">
+						{{ form_widget(form.price, { 'attr': {'class': 'input-xlarge', 'placeholder': '15.00'} }) }}
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" />
+				</div>
+
+				{{ form_rest(form) }}
+			</fieldset>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+parameters:
+#    sdt_message.example.class: Sdt\MessageBundle\Example
+
+services:
+    sdt.message.admin.thread:
+        class: Sdt\MessageBundle\Admin\ThreadAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Messages, label: Threads }
+        arguments: [null, Sdt\MessageBundle\Entity\Thread,SonataAdminBundle:CRUD]
+
+    sdt.message.admin.message:
+        class: Sdt\MessageBundle\Admin\MessageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Messages, label: Messages }
+        arguments: [null, Sdt\MessageBundle\Entity\Message,SonataAdminBundle:CRUD]

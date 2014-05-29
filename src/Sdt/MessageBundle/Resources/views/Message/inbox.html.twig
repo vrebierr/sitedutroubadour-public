@@ -1,0 +1,33 @@
+{% extends 'SdtMessageBundle::layout.html.twig' %}
+
+{% block title %}Mes messages privés{% endblock %}
+
+{% block content %}
+	<h1>Mes messages privés</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Liste des sujets</h2>
+        </div>
+        <div class="content">
+			<div class="submit">
+				<a href="{{ path('ornicar_message_thread_new') }}"><input type="submit" value="Envoyer un message" /></a>
+			</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+
+			{% include 'OrnicarMessageBundle:Message:threads_list.html.twig' with {'threads': threads} %}
+
+			<div class="submit">
+				<a href="{{ path('ornicar_message_thread_new') }}"><input type="submit" value="Envoyer un message" /></a>
+			</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "SdtCoreBundle::layout.html.twig" %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block content %}
+	<h1>Nous contacter</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Formulaire de contact</h2>
+        </div>
+        <div class="content">
+			<form action="{{ path('contact') }}" method="POST" {{ form_enctype(form) }}>
+				<div class="input">
+					<label>Tapez votre email</label>
+					{{ form_widget(form.senderEmail) }}
+				</div>
+
+				<div class="input">
+					<label>Votre nom</label>
+					{{ form_widget(form.senderName) }}
+				</div>
+
+				<div class="input">
+					<label>Sujet</label>
+					{{ form_widget(form.subject) }}
+				</div>
+
+				<div class="input">
+					<label>Message</label>
+					{{ form_widget(form.message, { 'attr': {'rows': '15'} }) }}
+				</div>
+
+				<div class="input">
+					<label>Captcha</label>
+					{{ form_widget(form.captcha) }}
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(form) }}
+				{{ form_errors(form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

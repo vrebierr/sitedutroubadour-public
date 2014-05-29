@@ -1,0 +1,61 @@
+{% extends 'SdtForumBundle::layout.html.twig' %}
+
+{% block title %}Liste des forums{% endblock %}
+
+{% block content %}
+	<h1>Liste des forums</h1>
+
+	{% for forum in forums %}
+		<div class="bloc">
+			<div class="title">
+				<h2>
+					<a href="{{ path('SdtForumBundle_forum_show', {'slug': forum.slug }) }}" style="color: gray;">
+						{{ forum.name }}
+					</a>
+				</h2>
+			</div>
+			<div class="content">
+				<table>
+					<thead>
+						<tr>
+							<th>Forum</th>
+							<th>Sujets</th>
+							<th>Réponses</th>
+							<th>Dernier message</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for child in childs %}
+							{% if child.parent == forum %}
+								<tr>
+									<td>
+										<h5><a href="{{ path('SdtForumBundle_forum_show', {'slug': child.slug }) }}">{{ child.name }}</a></h5><br />
+										<span>{{ child.description }}</span>
+									</td>
+
+									<td>
+										{{ child.numTopics }}
+									</td>
+
+									<td>
+										{{ child.numPosts }}
+									</td>
+
+									<td>
+										{% if child.lastPost != '' %}
+											Posté par <a href="{{ path('application_sonata_user_profile', {'id': child.lastPost.author.id, 'username': child.lastPost.author.username }) }}">{{ child.lastPost.author.username }}</a><br />
+											
+											<a href="{{ path('SdtForumBundle_topic_show', {'slug': child.lastTopic.slug }) }}#message-{{ child.lastPost.id }}">{{ time_diff(child.lastPost.createdAt) }}</a>
+										{% else %}
+											Aucun message.
+										{% endif %}
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

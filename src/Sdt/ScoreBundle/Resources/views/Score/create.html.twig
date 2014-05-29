@@ -1,0 +1,42 @@
+{% extends "SdtScoreBundle::layout.html.twig" %}
+
+{% block title %}Ajouter une partition{% endblock %}
+
+{% block content %}
+	<h1>Ajouter une partition</h1>
+	
+	<div class="bloc">
+        <div class="title">
+            <h2>Informations</h2>
+        </div>
+        <div class="content">
+			<form action="{{ path('SdtScoreBundle_score_create') }}" method="post" {{ form_enctype(form) }}>
+				<div class="input">
+					<label>Artiste</label>
+					{{ form_widget(form.artist) }}
+				</div>
+
+				<div class="input">
+					<label>Titre de la chanson</label>
+					{{ form_widget(form.song) }}
+				</div>
+
+				<div class="input">
+					<label>Catégorie</label>
+					{{ form_widget(form.category) }}
+				</div>
+
+				<div class="input">
+					<label>Partition</label>
+					{{ form_widget(form.media.binaryContent) }}
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

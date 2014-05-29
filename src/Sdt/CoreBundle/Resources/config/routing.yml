@@ -1,0 +1,15 @@
+homepage:
+    pattern:  /
+    defaults: { _controller: SdtCoreBundle:Core:homepage }
+
+rules:
+    pattern:  /mentions-legales
+    defaults: { _controller: SdtCoreBundle:Core:rules }
+
+contact:
+    pattern:  /contact
+    defaults: { _controller: SdtCoreBundle:Core:contact }
+
+search:
+    pattern:  /recherche
+    defaults: { _controller: SdtCoreBundle:Core:search }

@@ -1,0 +1,19 @@
+SdtNewsBundle_news_index:
+    pattern:  /news
+    defaults: { _controller: "SdtNewsBundle:News:index" }
+
+SdtNewsBundle_news_show:
+    pattern:  /news/{id}/{slug}
+    defaults: { _controller: "SdtNewsBundle:News:show" }
+
+SdtNewsBundle_news_create:
+    pattern:  /news/create
+    defaults: { _controller: "SdtNewsBundle:News:create" }
+
+SdtNewsBundle_news_update:
+    pattern:  /news/update/{id}
+    defaults: { _controller: "SdtNewsBundle:News:update" }
+
+SdtNewsBundle_news_validate:
+    pattern:  /news/validate/{id}
+    defaults: { _controller: "SdtNewsBundle:News:validate" }

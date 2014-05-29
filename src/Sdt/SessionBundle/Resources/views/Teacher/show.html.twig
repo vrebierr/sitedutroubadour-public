@@ -1,0 +1,10 @@
+{% extends 'SdtSessionBundle::layout.html.twig' %}
+
+{% block content %}
+	<a href="{{ path('application_sonata_user_profile', {'id': teacher.user.id, 'username': teacher.user.username }) }}">{{ teacher.user.username }}</a><br />
+	{{ teacher.firstname }}<br />
+	{{ teacher.lastname }}<br />
+	{{ teacher.price }}
+
+	
+{% endblock %}

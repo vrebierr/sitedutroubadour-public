@@ -1,0 +1,38 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}Création d'un tutoriel{% endblock %}
+
+{% block content %}
+	{% block h1 %}Création d'un tutoriel{% endblock %}
+
+	<div class="bloc">
+		<div class="title">
+			<h2>Rédiger un nouveau tutoriel</h2>
+		</div>
+		<div class="content">
+			<form action="{{ path('SdtTutorialBundle_tutorial_create') }}" method="post" {{ form_enctype(form) }}>
+				<div class="input">
+					<label>Titre</label>
+					{{ form_widget(form.title) }}
+				</div>
+
+				<div class="input">
+					<label>Image</label>
+					{{ form_widget(form.media.binaryContent) }}
+				</div>
+
+				<div class="input">
+					<label>Contenu</label>
+					{{ form_widget(form.content, { 'attr': {'class': 'tinymce', 'rows': '15', 'data-theme': 'simple' } }) }}
+					<a href="{{ path('application_sonata_media_upload') }}" data-toggle="modal" target="_blank">Upload d'un media</a>
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

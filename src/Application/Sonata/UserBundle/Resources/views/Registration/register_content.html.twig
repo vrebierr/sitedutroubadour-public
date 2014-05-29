@@ -1,0 +1,60 @@
+<div class="bloc left">
+    <div class="title">
+        <h2>Formulaire d'inscription</h2>
+    </div>
+    <div class="content">
+		<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+			<div class="input">
+				<label>Nom d'utilisateur</label>
+				{{ form_widget(form.username) }}
+				{{ form_errors(form.username) }}
+			</div>
+
+			<div class="input">
+				<label>Adresse e-mail</label>
+				{{ form_widget(form.email) }}
+				{{ form_errors(form.email) }}
+			</div>
+
+			<div class="input">
+				<label>Mot de passe</label>
+				{{ form_widget(form.plainPassword.first) }}
+				{{ form_errors(form.plainPassword.first) }}
+			</div>
+
+			<div class="input">
+				<label>Vérification du mot de passe</label>
+				{{ form_widget(form.plainPassword.second) }}
+				{{ form_errors(form.plainPassword.second) }}
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Dispositions légales:</label>
+				<input type="checkbox" required="required" />
+				J'ai lu et j'accepte <a href="{{ path('rules') }}">les mentions légales</a>
+			</div>
+
+			{{ form_rest(form) }}
+
+		    <div class="submit">
+		        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+		    </div>
+		</form>
+	</div>
+</div>
+
+<div class="bloc right">
+    <div class="title">
+        <h2>Connexion via Facebook et Google</h2>
+     </div>
+     <div class="content">
+		<a class="button" href="{{ hwi_oauth_login_url('facebook') }}">
+			<img src="/img/icons/menu/facebook.png" alt="" />
+			Connexion avec Facebook
+		</a>
+		<a class="button black" href="{{ hwi_oauth_login_url('google') }}">
+			<img src="/img/icons/menu/vcard.png" alt="" />
+			Connexion avec Google
+		</a>
+	</div>
+</div>

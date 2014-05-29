@@ -1,0 +1,7 @@
+parameters:
+#    sdt_payment.example.class: Sdt\PaymentBundle\Example
+
+services:
+#    sdt_payment.example:
+#        class: %sdt_payment.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

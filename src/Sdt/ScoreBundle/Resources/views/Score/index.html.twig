@@ -1,0 +1,76 @@
+{% extends "SdtScoreBundle::layout.html.twig" %}
+
+{% block title %}Partitions{% endblock %}
+
+{% block content %}
+	<h1>Partitions des Troubadours</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Recherche</h2>
+        </div>
+        <div class="content">
+			<form action="{{ path('SdtScoreBundle_score_index') }}" method="get" {{ form_enctype(form) }}>
+				<div class="input">
+					<label>Artiste</label>
+					{{ form_widget(form.artist) }}
+				</div>
+
+				<div class="input">
+					<label>Titre de la chanson</label>
+					{{ form_widget(form.song) }}
+				</div>
+
+				<div class="input">
+					<label>Catégorie</label>
+					{{ form_widget(form.category) }}
+				</div>
+
+				{{ form_rest(form) }}
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Partitions</h2>
+        </div>
+        <div class="content">
+        	<div class="navigation" style="float: right;">
+				{{ pagination.render()|raw }}
+			</div>
+			<table>
+				<tr>
+					<th>Artiste</th>
+					<th>Titre de la chanson</th>
+					<th>Categorie</th>
+					<th>Actions</th>
+				</tr>
+				{% for score in pagination %}
+					<tr>
+						<td>
+							{{ score.artist }}
+						</td>
+						<td>
+							<a href="{{ path('SdtScoreBundle_score_show', {'id': score.id, 'slug': score.slug }) }}">{{ score.song }}</a>
+						</td>
+						<td>
+							{{ score.category }}
+						</td>
+						<td>
+							<a href="{{ path('sonata_media_download', {'id': score.media.id }) }}"><i class="icon-download"></i></a> <a href="{{ path('SdtScoreBundle_score_show', {'id': score.id, 'slug': score.slug }) }}"><i class="icon-search"></i>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+
+			<div class="navigation" style="float: right;">
+				{{ pagination.render()|raw }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+parameters:
+#    sdt_news.example.class: Sdt\NewsBundle\Example
+
+services:
+    sdt.news.admin.news:
+        class: Sdt\NewsBundle\Admin\NewsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: News, label: News }
+        arguments: [null, Sdt\NewsBundle\Entity\News,SonataAdminBundle:CRUD]
+
+    sdt.news.admin.news_category:
+        class: Sdt\NewsBundle\Admin\NewsCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: News, label: Categories }
+        arguments: [null, Sdt\NewsBundle\Entity\NewsCategory,SonataAdminBundle:CRUD]

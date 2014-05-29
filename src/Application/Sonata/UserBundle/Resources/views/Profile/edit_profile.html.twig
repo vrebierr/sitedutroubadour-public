@@ -1,0 +1,25 @@
+{% extends "ApplicationSonataUserBundle::layout.html.twig" %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block content %}
+	<h1>Mon profil</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Informations</h2>
+        </div>
+        <div class="content">
+			<form action="{{ path('sonata_user_profile_edit') }}" method="post" {{ form_enctype(form) }}>
+
+				{{ form_row(form.avatar.binaryContent) }}
+
+				{{ form_rest(form) }}
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

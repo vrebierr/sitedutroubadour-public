@@ -1,0 +1,7 @@
+parameters:
+#    sdt_core.example.class: Sdt\CoreBundle\Example
+
+services:
+#    sdt_core.example:
+#        class: %sdt_core.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

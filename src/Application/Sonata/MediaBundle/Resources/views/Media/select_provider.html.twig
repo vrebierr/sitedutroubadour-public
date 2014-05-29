@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Upload d'un media{% endblock %}
+
+{% block content %}
+	<div class="page-header">
+		<h1>Upload d'un media</h1>
+	</div>
+	
+	<ul class="nav nav-tabs" id="tab">
+		{% for provider in providers %}
+			<li><a href="#{{ provider.name|trans({}, 'SonataMediaBundle') }}">{{ provider.name|trans({}, 'SonataMediaBundle') }}</a></li>
+		{% endfor %}
+	</ul>
+	 
+	<div class="tab-content">
+		{% for provider in providers %}
+			<div class="tab-pane" id="{{ provider.name|trans({}, 'SonataMediaBundle') }}">{% render "ApplicationSonataMediaBundle:Media:upload" with {'provider': provider.name } %}</div>
+		{% endfor %}
+	</div>
+{% endblock %}

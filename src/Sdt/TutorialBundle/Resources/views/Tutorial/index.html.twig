@@ -1,0 +1,53 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}Les tutoriels des Troubadours{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        Liste des tutoriels
+    </li>
+{% endblock %}
+
+{% block content %}
+	<h1>Les tutoriels des Troubadours</h1>
+
+	<div class="bloc">
+		<div class="title">
+			<h2>Tutoriels</h2>
+	   	 </div>
+	   	 <div class="content">
+			<table>
+				<thead>
+					<tr>
+						<th>Icône</th>
+						<th>Titre</th>
+						<th>Date de publication</th>
+						<th>Auteur</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+
+				{% for tuto in tutos %}
+					<tbody>
+						<tr>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">{% thumbnail tuto.media, 'x_small' %}</a>
+							</td>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">{{ tuto.title }}</a>
+							</td>
+							<td>{{ time_diff(tuto.updatedAt) }}</td>
+							<td>
+								<a href="{{ path('application_sonata_user_profile', {'id': tuto.author.id, 'username': tuto.author.username }) }}">{{ tuto.author.username }}</a>
+							</td>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}"><i class="icon-search"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'SdtCoreBundle::layout.html.twig' %}
+
+{% block head_scripts %}
+	{{ parent() }}
+
+	<script>
+		(function() {
+			var cx = '005083994973574815063:micqzbh_ylc';
+			var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+			gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.fr/cse/cse.js?cx=' + cx;
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+		})();
+	</script>
+{% endblock head_scripts %}
+
+{% block title %}{% if query != '' %}Résultats pour « {{ query }} »{% else %}Entrez votre recherche{% endif %}{% endblock title %}
+
+{% block content %}
+	<h1>
+		{% if query != '' %}Résultats pour « {{ query }} »{% else %}Entrez votre recherche:{% endif %}
+	</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Recherche</h2>
+        </div>
+        <div class="content">
+			<gcse:search></gcse:search>
+		</div>
+	</div>
+{% endblock %}

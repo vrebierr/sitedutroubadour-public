@@ -1,0 +1,51 @@
+{% extends "ApplicationSonataUserBundle::layout.html.twig" %}
+
+{% block title %}Communauté des Troubadours{% endblock %}
+
+{% block content %}
+	<h1>Liste des Troubadours</h1>
+
+	<div class="bloc">
+	    <div class="title">
+	        <h2>Liste des membres</h2>
+	     </div>
+	     <div class="content">
+			<table>
+				<thead>
+					<tr>
+						<th>Avatar</th>
+						<th>Pseudo</th>
+						<th>Groupes</th>
+						<th>Date d'inscription</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>
+								<a href="{{ path('application_sonata_user_profile', {'id': user.id, 'username': user.username }) }}">
+									{% thumbnail user.avatar, 'x_small' with {'itemprop': 'image'} %}
+								</a>
+							</td>
+
+							<td>
+								<a href="{{ path('application_sonata_user_profile', {'id': user.id, 'username': user.username }) }}">
+									{{ user.username }}
+								</a>
+							</td>
+
+							<td>
+								{% for group in user.groups %}{{ group.name }} {% endfor %}
+							</td>
+
+							<td>
+								{{ time_diff(user.createdAt) }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

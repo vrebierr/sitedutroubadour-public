@@ -1,0 +1,48 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}Création d'une news{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        Création d'une news
+    </li>
+{% endblock %}
+
+{% block content %}
+	<div class="row" style="margin-left: 0px;">
+		<form class="well form-horizontal" action="{{ path('SdtTutorialBundle_news_create') }}" method="post" {{ form_enctype(form) }}>
+			<fieldset>
+				<legend>Création d'un tutoriel</legend>
+
+				<div class="control-group">
+					<label class="control-label">Titre</label>
+					<div class="controls">
+						{{ form_widget(form.title, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Image</label>
+					<div class="controls">
+						{{ form_widget(form.media.binaryContent, { 'attr': {'class': 'input-xlarge'} }) }}
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Contenu</label>
+					<div class="controls">
+						{{ form_widget(form.content, { 'attr': {'class': 'input-xlarge tinymce', 'rows': '15', 'data-theme': 'simple', 'style': 'width: 100%;'} }) }}
+						<span class="help-block"><i class="icon-upload"></i> <a href="{{ path('application_sonata_media_upload') }}" data-toggle="modal" target="_blank">Upload d'un media</a></span>
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" />
+				</div>
+
+				{{ form_rest(form) }}
+			</fieldset>
+		</form>
+	</div>
+{% endblock %}

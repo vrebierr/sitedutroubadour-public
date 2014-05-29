@@ -1,0 +1,21 @@
+parameters:
+#    sdt_forum.example.class: Sdt\ForumBundle\Example
+
+services:
+    sdt.forum.admin.forum:
+        class: Sdt\ForumBundle\Admin\ForumAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Forums, label: Forums }
+        arguments: [null, Sdt\ForumBundle\Entity\Forum,SonataAdminBundle:CRUD]
+
+    sdt.forum.admin.topic:
+        class: Sdt\ForumBundle\Admin\TopicAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Forums, label: Topics }
+        arguments: [null, Sdt\ForumBundle\Entity\Topic,SonataAdminBundle:CRUD]
+
+    sdt.forum.admin.post:
+        class: Sdt\ForumBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Forums, label: Posts }
+        arguments: [null, Sdt\ForumBundle\Entity\Post,SonataAdminBundle:CRUD]

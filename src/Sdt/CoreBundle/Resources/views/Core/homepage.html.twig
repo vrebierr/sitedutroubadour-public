@@ -1,0 +1,115 @@
+{% extends "SdtCoreBundle::layout.html.twig" %}
+
+{% block title %}Le Site du Troubadour{% endblock %}
+
+{% block subhead %}
+	<header class="jumbotron subhead" id="overview">
+		<div class="container-fluid">
+			<h1>Le Site du Troubadour</h1>
+			<p>Le site communautaire de tutoriels gratuits de musique.</p>
+		</div>
+	</header>
+
+	<div class="bs-docs-social">
+		<div class="container-fluid">
+			<ul class="bs-docs-social-buttons">
+				<li>
+					<div class="fb-like" data-href="https://www.facebook.com/sitedutroubadour" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+				</li>
+				<li class="follow-btn">
+					<iframe allowtransparency="true" frameborder="0" scrolling="no" src="//platform.twitter.com/widgets/follow_button.html?screen_name=SiteduTroubadou&lang=fr" style="width:300px; height:20px;"></iframe>
+				</li>
+				<li class="tweet-btn">
+					<iframe allowtransparency="true" frameborder="0" scrolling="no" src="//platform.twitter.com/widgets/tweet_button.html?screen_name=SiteduTroubadou&lang=fr" style="width:130px; height:20px;"></iframe>
+				</li>
+				<li>
+					<div class="g-plusone" data-annotation="inline" data-width="300" data-href="http://www.sitedutroubadour.fr"></div>
+
+					<script type="text/javascript">
+						window.___gcfg = {lang: 'fr'};
+
+						(function() {
+							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+							po.src = 'https://apis.google.com/js/plusone.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						})();
+					</script>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<br />
+{% endblock subhead %}
+
+{% block content %}
+	<h1>Le Site du Troubadour</h1>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>À la une</h2>
+        </div>
+        <div class="content">
+        	<ul class="gallery">
+        		{% for une in unes %}
+	        		<li>
+	        			<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': une.id, 'slug': une.slug }) }}">
+	        				{% thumbnail une.media, 'small' %}
+	        			</a>
+	        			<span class="info">{{ une.title }}</span>
+	        		</li>
+        		{% endfor %}
+        	</ul>
+        </div>
+    </div>
+
+	<div class="cb"></div>
+
+    <div class="bloc right">
+        <div class="title">
+            <h2>Derniers articles</h2>
+        </div>
+        <div class="content">
+        	<table>
+				{% for entity in news %}
+					<tr>
+						<td>
+							<a href="{{ path('SdtNewsBundle_news_show', {'id': entity.id, 'slug': entity.slug }) }}">
+								{% thumbnail entity.media, 'x_small' %}
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('SdtNewsBundle_news_show', {'id': entity.id, 'slug': entity.slug }) }}">
+								{{ entity.title }}
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+        </div>
+    </div>
+    
+	<div class="bloc left">
+        <div class="title">
+            <h2>Derniers tutoriels</h2>
+        </div>
+        <div class="content">
+        	<table>
+				{% for tuto in tutos %}
+					<tr>
+						<td>
+							<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">
+								{% thumbnail tuto.media, 'x_small' %}
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">
+								{{ tuto.title }}
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+        </div>
+    </div>
+{% endblock %}

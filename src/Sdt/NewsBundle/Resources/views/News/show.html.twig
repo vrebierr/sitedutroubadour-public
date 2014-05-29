@@ -1,0 +1,19 @@
+{% extends "SdtNewsBundle::layout.html.twig" %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block content %}
+	<h1>
+        {% thumbnail news.media, 'small' %} {{ news.title }}
+    </h1>
+
+    <div class="bloc">
+        <div class="title">
+            <h2>Article</h2>
+        </div>
+        <div class="content">
+            {{ news.content|purify }}
+            {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'news_' ~ news.id } %}
+        </div>
+    </div>
+{% endblock %}

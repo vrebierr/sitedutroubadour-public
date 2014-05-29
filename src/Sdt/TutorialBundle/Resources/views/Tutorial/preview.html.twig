@@ -1,0 +1,27 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}{{ tuto.title }}{% endblock %}
+
+{% block sidebar %}
+	<li>
+		<a href="#"><img src="/img/icons/menu/settings.png" alt="" />
+			Boite à outils
+		</a>
+		<ul>
+		    <li><a href="{{ path('SdtTutorialBundle_tutorial_update', {'id': tuto.id }) }}">Modifier le tutoriel</a></li>
+		    <li><a href="{{ path('SdtTutorialBundle_tutorial_validate', {'id': tuto.id }) }}">Faire valider le tutoriel</a></li>
+		</ul>
+	</li>
+
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	{% block h1 %} {{ tuto.title }}{% endblock %}
+
+	<div class="bloc">
+		<div class="content">
+			{{ tuto.content|purify }}
+		</div>
+	</div>
+{% endblock %}

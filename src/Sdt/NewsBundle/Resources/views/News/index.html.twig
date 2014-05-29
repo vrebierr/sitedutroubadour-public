@@ -1,0 +1,31 @@
+{% extends "SdtNewsBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        Liste des News
+    </li>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Icône</th>
+                <th>Titre</th>
+                <th>Categorie</th>
+                <th>Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for entity in entities %}
+                    <td>{% thumbnail entity.media, 'x_small' %}</td>
+                    <td><a href="{{ path('SdtNewsBundle_news_show', {'id': entity.id, 'slug': entity.slug }) }}">{{ entity.title }}</a></td>
+                    <td>{{ entity.category }}</td>
+                    <td>{{ time_diff(entity.createdAt) }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

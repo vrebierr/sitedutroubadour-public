@@ -1,0 +1,15 @@
+parameters:
+#    sdt_advert.example.class: Sdt\AdvertBundle\Example
+
+services:
+    sdt.advert.admin.advert:
+        class: Sdt\AdvertBundle\Admin\AdvertAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Annonces, label: Annonces }
+        arguments: [null, Sdt\AdvertBundle\Entity\Advert,SonataAdminBundle:CRUD]
+
+    sdt.advert.admin.advert_category:
+        class: Sdt\AdvertBundle\Admin\AdvertCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Annonces, label: Categories }
+        arguments: [null, Sdt\AdvertBundle\Entity\AdvertCategory,SonataAdminBundle:CRUD]

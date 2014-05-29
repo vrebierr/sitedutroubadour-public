@@ -1,0 +1,9 @@
+parameters:
+#    sdt_comment.example.class: Sdt\CommentBundle\Example
+
+services:
+    sdt.comment.admin.comment:
+        class: Sdt\CommentBundle\Admin\CommentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Commentaires, label: Commentaires }
+        arguments: [null, Sdt\CommentBundle\Entity\Comment,SonataAdminBundle:CRUD]

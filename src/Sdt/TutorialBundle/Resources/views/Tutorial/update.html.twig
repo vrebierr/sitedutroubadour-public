@@ -1,0 +1,52 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}{{ tuto.title }}{% endblock %}
+
+{% block sidebar %}
+	<li>
+		<a href="#"><img src="/img/icons/menu/settings.png" alt="" />
+			Boite à outils
+		</a>
+		<ul>
+		    <li><a href="{{ path('SdtTutorialBundle_tutorial_preview', {'id': tuto.id }) }}">Prévisualiser le tutoriel</a></li>
+		    <li><a href="{{ path('SdtTutorialBundle_tutorial_validate', {'id': tuto.id }) }}">Faire valider le tutoriel</a></li>
+		</ul>
+	</li>
+
+	{{ parent() }}
+{% endblock %}
+
+{% block content %}
+	{% block h1 %}{{ tuto.title }}{% endblock %}
+
+	<div class="bloc">
+		<div class="title">
+			<h2>Édition d'un tutoriel</h2>
+		</div>
+		<div class="content">
+			<form action="{{ path('SdtTutorialBundle_tutorial_update', {'id': tuto.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+				<div class="input">
+					<label>Titre</label>
+					{{ form_widget(edit_form.title) }}
+				</div>
+
+				<div class="input">
+					<label>Image</label>
+					{{ form_widget(edit_form.media.binaryContent) }}
+				</div>
+
+				<div class="input">
+					<label>Contenu</label>
+					{{ form_widget(edit_form.content, { 'attr': {'class': 'tinymce', 'rows': '15', 'data-theme': 'simple' } }) }}
+					<a href="{{ path('application_sonata_media_upload') }}" data-toggle="modal" target="_blank">Upload d'un media</a>
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(edit_form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+SdtTutorialBundle_tutorial_index:
+    pattern:  /tutoriel
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:index" }
+
+SdtTutorialBundle_tutorial_show:
+    pattern:  /tutoriel/{id}/{slug}
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:show" }
+
+SdtTutorialBundle_tutorial_myTutorials:
+    pattern:  /tutoriel/mes-tutoriels
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:myTutorials" }
+
+SdtTutorialBundle_tutorial_preview:
+    pattern:  /tutoriel/preview/{id}/
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:preview" }
+
+SdtTutorialBundle_tutorial_create:
+    pattern:  /tutoriel/create
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:create" }
+
+SdtTutorialBundle_tutorial_update:
+    pattern:  /tutoriel/update/{id}/
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:update" }
+
+SdtTutorialBundle_tutorial_delete:
+    pattern:  /tutoriel/delete/{id}/
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:delete" }
+
+SdtTutorialBundle_tutorial_validate:
+    pattern:  /tutoriel/validate/{id}/
+    defaults: { _controller: "SdtTutorialBundle:Tutorial:validate" }
+
+SdtTutorialBundle_tutorialcategory_show:
+    pattern:  /tutoriel/categorie/{id}/{slug}
+    defaults: { _controller: "SdtTutorialBundle:TutorialCategory:show" }

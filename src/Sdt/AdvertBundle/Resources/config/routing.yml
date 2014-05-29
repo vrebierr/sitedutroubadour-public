@@ -1,0 +1,15 @@
+SdtAdvertBundle_advert_index:
+    pattern: /annonces
+    defaults: { _controller: SdtAdvertBundle:Advert:index }
+
+SdtAdvertBundle_advert_show:
+    pattern: /annonces/{slug}
+    defaults: { _controller: SdtAdvertBundle:Advert:show }
+
+SdtAdvertBundle_advert_create:
+    pattern: /annonces/create/
+    defaults: { _controller: SdtAdvertBundle:Advert:create }
+
+SdtAdvertBundle_advert_update:
+    pattern: /annonces/update
+    defaults: { _controller: SdtAdvertBundle:Advert:update }

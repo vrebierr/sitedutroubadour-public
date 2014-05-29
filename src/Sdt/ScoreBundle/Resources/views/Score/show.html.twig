@@ -1,0 +1,60 @@
+{% extends "SdtScoreBundle::layout.html.twig" %}
+
+{% block title %}{{ score.artist }} - {{ score.song }}{% endblock %}
+
+{% block content %}
+	<h1>{{ score.artist }} - {{ score.song }}</h1>
+
+	<div class="bloc left">
+        <div class="title">
+            <h2>Informations sur la partition</h2>
+        </div>
+        <div class="content">
+			<table>
+				<tr>
+					<td>Artiste:</td>
+					<td>{{ score.artist }}</td>
+				</tr>
+				<tr>
+					<td>Chanson:</td>
+					<td>{{ score.song }}</td>
+				</tr>
+				<tr>
+					<td>Categorie:</td>
+					<td>{{ score.category }}</td>
+				</tr>
+				<tr>
+					<td>Uploader:</td>
+					<td><a href="{{ path('application_sonata_user_profile', {'id': score.uploader.id, 'username': score.uploader.username }) }}">{{ score.uploader.username }}</a></td>
+				</tr>
+				<tr>
+					<td>Date de l'upload:</td>
+					<td>{{ time_diff(score.createdAt) }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="bloc right">
+        <div class="title">
+            <h2>Actions</h2>
+        </div>
+        <div class="content">
+			<ul>
+				<li><a href="{{ path('sonata_media_download', {'id': score.media.id }) }}">Télécharger</a></li>
+				<li><a href="">Signaler</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="cb"></div>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Commentaires</h2>
+        </div>
+        <div class="content">
+			{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'score_' ~ score.id } %}
+		</div>
+	</div>
+{% endblock %}

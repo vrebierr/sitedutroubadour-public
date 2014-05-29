@@ -1,0 +1,11 @@
+SdtScoreBundle_score_index:
+    pattern:  /partition
+    defaults: { _controller: SdtScoreBundle:Score:index }
+
+SdtScoreBundle_score_show:
+    pattern:  /partition/{id}/{slug}
+    defaults: { _controller: SdtScoreBundle:Score:show }
+
+SdtScoreBundle_score_create:
+    pattern:  /partition/create
+    defaults: { _controller: SdtScoreBundle:Score:create }

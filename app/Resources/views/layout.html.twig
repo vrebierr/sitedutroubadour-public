@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ app.request.locale }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ app.request.locale }}"> <!--<![endif]-->
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body class="wood dark">
+	<div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1&appId=342799845806305";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="settings" id="settings" style="margin-right: -150px; ">
+            <div class="wrapper">
+                <div class="grid3">
+                    <div class="titre">Fond</div>
+                    <a data="url(/img/bg.png)" class="backgroundChanger" title="White" style="background-image: url(/img/bg.png); background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/dark-bg.png)" class="backgroundChanger dark" title="Dark" style="background-image: url(/img/dark-bg.png); background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/wood.jpg) fixed" class="backgroundChanger dark active" title="Wood" style="background-image: url(/img/wood.jpg); background-attachment: fixed; background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/altbg/smoothwall.png)" class="backgroundChanger" title="Smoothwall" style="background-image: url(/img/altbg/smoothwall.png); background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/altbg/black_denim.png) fixed" class="backgroundChanger dark" title="black_denim" style="background-image: url(/img/altbg/black_denim.png); background-attachment: fixed; background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/altbg/carbon.gif) fixed" class="backgroundChanger dark" title="Carbon" style="background-image: url(/img/altbg/carbon.gif); background-attachment: fixed; background-position: initial initial; background-repeat: initial initial; "></a>
+                    <a data="url(/img/altbg/double_lined.png) fixed" class="backgroundChanger" title="Double lined" style="background-image: url(/img/altbg/double_lined.png); background-attachment: fixed; background-position: initial initial; background-repeat: initial initial; "></a>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid3">
+                    <div class="titre">Style des blocs</div>
+                    <a data="black" class="blocChanger active" title="Black" style="background:url(/img/bloctitle.png);"></a>
+                    <a data="white" class="blocChanger" title="White" style="background:url(/img/white-title.png);"></a>
+                    <a data="wood" class="blocChanger" title="Wood" style="background:url(/img/wood-title.jpg);"></a>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid3">
+                    <div class="titre">Couleur de la Sidebar</div>
+                    <a data="grey" class="sidebarChanger active" title="Grey" style="background:#494949"></a>
+                    <a data="black" class="sidebarChanger active" title="Black" style="background:#262626"></a>
+                    <a data="white" class="sidebarChanger" title="White" style="background:#EEEEEE"></a>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <a class="settingbutton" href="#">
+
+            </a>
+        </div>
+
+        <!--              
+                HEAD
+                        --> 
+        <div id="head">
+            <div class="left">
+                <a href="{{ path('homepage') }}" class="button profile"><img src="/img/icons/menu/home.png" alt="" /></a>
+                <a href="{{ path('homepage') }}">Site du Troubadour</a>
+            </div>
+            <div class="right">
+                <form action="{{ path('search') }}" id="search" class="search placeholder" method="GET">
+                    <label>Recherche</label>
+                    <input type="text" value="" name="q" class="text"/>
+                    <input type="submit" value="rechercher" class="submit"/>
+                </form>
+            </div>
+        </div>
+
+        <!--            
+                SIDEBAR
+                         --> 
+        <div id="sidebar" class="black">
+            <ul>
+                {% block sidebar %}
+                    <li>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <a href="#">
+                                <img src="/img/icons/menu/user.png" alt="" />
+                                {{ app.user.username }}
+                            </a>
+
+                            <ul>
+                                <li><a href="{{ path('ornicar_message_inbox') }}">Mes messages</a></li>
+                                <li><a href="{{ path('sonata_user_profile_edit') }}">Mon profil</a></li>
+                                <li><a href="{{ path('sonata_user_profile_edit_authentication') }}">Mes paramètres</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                            </ul>
+                        {% else %}
+                            <a href="#">
+                                <img src="/img/icons/menu/user.png" alt="" />
+                                Rejoignez-nous
+                            </a>
+
+                            <ul>
+                                <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                                <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                            </ul>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <a href="#"><img src="/img/icons/menu/books.png" alt="" />
+                            Tutoriels
+                        </a>
+                        <ul>
+                            <li><a href="{{ path('SdtTutorialBundle_tutorial_index') }}">Tous les tutoriels</a></li>
+                            <li><a href="{{ path('SdtTutorialBundle_tutorial_myTutorials') }}">Mes tutoriels</a></li>
+                            <li><a href="{{ path('SdtTutorialBundle_tutorial_create') }}">Rédiger un tutoriel</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ path('SdtForumBundle_forum_index') }}"><img src="/img/icons/menu/comments.png" alt="" />
+                            Forums
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/img/icons/menu/download.png" alt="" />
+                            Partitions
+                        </a>
+                        <ul>
+                            <li><a href="{{ path('SdtScoreBundle_score_index') }}">Toutes les partitions</a></li>
+                            <li><a href="{{ path('SdtScoreBundle_score_create') }}">Ajouter une partition</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ path('SdtAdvertBundle_advert_index') }}"><img src="/img/icons/menu/marker.png" alt="" />
+                            Annonces
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('contact') }}"><img src="/img/icons/menu/mail.png" alt="" />
+                            Nous contacter
+                        </a>
+                    </li>
+                {% endblock %}
+            </ul>
+            <a href="#collapse" id="menucollapse">&#9664; Réduire le menu</a>
+        </div>
+
+        <!--            
+              CONTENT 
+                        --> 
+        <div id="content" class="black">
+	    {% block page_header %}
+                <h1>{% block headline %}{% endblock headline %}</h1>
+            {% endblock page_header %}
+
+            {% for flash in app.session.flashbag.get('notice') %}
+		    <div class="notif info bloc">
+			{{ flash }}
+			<a href="#" class="close">x</a>
+		    </div>
+		{% endfor %}
+        
+            {% block content %}{% endblock %}
+
+<div class="cb"></div>
+
+            <div class="bloc left">
+                <div class="title">
+                    <h2>Suivez-nous sur Facebook !</h2>
+                </div>
+                <div class="content" style="text-align: center;">
+                    <div class="fb-like-box" data-href="http://www.facebook.com/sitedutroubadour" data-width="300" data-height="400" data-show-faces="true" data-stream="true" data-header="false"></div>
+                </div>
+            </div>
+
+            <div class="bloc right">
+                <div class="title">
+                    <h2>Suivez-nous sur Twitter !</h2>
+                </div>
+                <div class="content" style="text-align: center;">
+                    <a class="twitter-timeline" width="300" href="https://twitter.com/SiteduTroubadou" data-widget-id="290167491940974592">Tweets de @SiteduTroubadou</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+            </div>
+
+		
+	<div class="cb"></div>
+
+            <div class="bloc">
+                <div class="content" style="text-align: center;">
+                    &copy; Site du Troubadour -
+                    Déjà <a href="{{ path('application_sonata_user_index') }}">{% render 'ApplicationSonataUserBundle:Profile:userCount' %} Troubadours</a> inscrits !<br />
+                    <a href="http://www.oubah.com/dir/" title="Annuaire Web">Annuaire Web</a><br />
+                    <a title="Annuaire pour le Référencement Google" href="http://annuaire.yagoort.org">Annuaire Webmaster</a>
+                </div>
+            </div>
+        </div>
+        
+        <script src="/js/9e82c99.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36344676-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/5dOzqPus0ko4LDXRxW83SQ.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
+
+{{ tinymce_init() }}
+    </body>
+</html>

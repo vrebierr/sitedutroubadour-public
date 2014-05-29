@@ -1,0 +1,7 @@
+parameters:
+#    sdt_session.example.class: Sdt\SessionBundle\Example
+
+services:
+#    sdt_session.example:
+#        class: %sdt_session.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

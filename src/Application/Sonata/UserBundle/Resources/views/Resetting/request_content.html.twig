@@ -1,0 +1,22 @@
+<div class="bloc">
+    <div class="title">
+        <h2>Formulaire</h2>
+     </div>
+     <div class="content">
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+            <div class="input">
+                <label>{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+                <input class="input-xlarge" type="text" id="username" name="username" />
+            </div>
+
+            <div class="input">
+                <label></label>
+                <input type="checkbox" required="required"> Oui, je reconnais être tête en l'air. (obligatoire !)
+            </div>
+
+            <div class="submit">
+                <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+            </div>
+        </form>
+    </div>
+</div>

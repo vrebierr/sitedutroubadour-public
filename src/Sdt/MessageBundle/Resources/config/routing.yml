@@ -1,0 +1,3 @@
+SdtMessageBundle_message_thread_new:
+    pattern:  /mp/new/{id}
+    defaults: { _controller: SdtMessageBundle:Message:newThreadToUser }

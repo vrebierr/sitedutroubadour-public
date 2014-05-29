@@ -1,0 +1,5 @@
+<form class="well form-horizontal" action="{{ path('application_sonata_media_upload') }}?provider={{ provider }}" method="post" {{ form_enctype(form) }}>
+	{{ form_rest(form) }}
+
+	<input class="btn btn-primary" type="submit" />
+</form>

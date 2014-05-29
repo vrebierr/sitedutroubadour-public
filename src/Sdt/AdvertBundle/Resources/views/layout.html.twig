@@ -1,0 +1,21 @@
+{% extends "::layout.html.twig" %}
+
+{% block subhead %}
+	<header class="jumbotron subhead" id="overview">
+		<div class="container-fluid">
+			<h1>Annonces</h1>
+			<p class="lead">
+				À la recherche de Troubadours ? C'est ici que ça se passe !
+			</p>
+		</div>
+	</header>
+
+	<br />
+{% endblock subhead %}
+
+{% block breadcrumb %}
+	{{ parent() }}
+	<li>
+		<a href="{{ path('SdtAdvertBundle_advert_index') }}">Annonces</a> <span class="divider">/</span>
+	</li>
+{% endblock %}

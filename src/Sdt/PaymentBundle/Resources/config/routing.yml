@@ -1,0 +1,11 @@
+payment_details:
+    pattern: /{orderNumber}/details
+    defaults: { _controller: SdtPaymentBundle:Payment:details }
+
+payment_complete:
+    pattern: /{orderNumber}/complete
+    defaults: { _controller: SdtPaymentBundle:Payment:complete }
+
+payment_cancel:
+    pattern: /{orderNumber}/complete
+    defaults: { _controller: SdtPaymentBundle:Payment:complete }

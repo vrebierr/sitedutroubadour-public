@@ -1,0 +1,67 @@
+{% extends "SdtNewsBundle::layout.html.twig" %}
+
+{% block breadcrumb %}
+	{{ parent() }}
+	<li>
+		Accueil
+	</li>
+{% endblock %}
+
+{% block content %}
+	<h1>Bienvenue sur le Site du Troubadour !</h1>
+	<p>Le site communautaire de tutoriels gratuits de musique.</p>
+
+	<div id="myCarousel" class="carousel slide">
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+			<div class="active item">
+				<img src="http://www.guitariste.com/img/visionneuse/EP-GROOVE-CATCHERS-home.jpg" />
+				<div class="carousel-caption">
+					<h4>adzadza</h4>
+					<p>adazda daz da d zad  </p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="http://www.guitariste.com/img/visionneuse/Sans-titre-1.jpg" />
+			</div>
+		</div>
+		<!-- Carousel nav -->
+		<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+
+	<div class="row" style="margin-left: 0px;">
+		<div class="span6">
+			<h2>Derniers tutoriels</h2>
+
+			<table class="table">
+				{% for tuto in tutos %}
+					<tr>
+						<td><a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">{% thumbnail tuto.media, 'x_small' %}</a></td>
+						<td>
+							<h3><a href="{{ path('SdtTutorialBundle_tutorial_show', {'id': tuto.id, 'slug': tuto.slug }) }}">{{ tuto.title }}</a></h3>
+
+							<p>{{ tuto.description }}</p>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+
+		<div class="span6">
+
+			<h2>Dernières news</h2>
+
+			<table class="table">
+				{% for news in entities %}
+					<tr>
+						<td><a href="{{ path('SdtNewsBundle_news_show', {'id': news.id, 'slug': news.slug }) }}">{% thumbnail news.media, 'x_small' %}</a></td>
+						<td>
+							<h3><a href="{{ path('SdtNewsBundle_news_show', {'id': news.id, 'slug': news.slug }) }}">{{ news.title }}</a></h3>
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

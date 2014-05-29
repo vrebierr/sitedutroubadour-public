@@ -1,0 +1,21 @@
+{% extends "::layout.html.twig" %}
+
+{% block subhead %}
+	<header class="jumbotron subhead" id="overview">
+		<div class="container-fluid">
+			<h1>News</h1>
+			<p class="lead">
+				Dernières nouveautés des Troubadours !
+			</p>
+		</div>
+	</header>
+
+	<br />
+{% endblock subhead %}
+
+{% block breadcrumb %}
+	{{ parent() }}
+	<li>
+		<a href="{{ path('SdtNewsBundle_news_index') }}">Les News</a> <span class="divider">/</span>
+	</li>
+{% endblock %}

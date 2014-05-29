@@ -1,0 +1,43 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}Les tutoriels des Troubadours{% endblock %}
+
+{% block content %}
+	<h1>Les tutoriels des Troubadours</h1>
+
+	<div class="bloc">
+		<div class="content">
+			<table>
+				<thead>
+					<tr>
+						<th>Icône</th>
+						<th>Titre</th>
+						<th>Dernière édition</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+
+				{% for tuto in tutos %}
+					<tbody>
+						<tr>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_preview', {'id': tuto.id }) }}">{% thumbnail tuto.media, 'x_small' %}</a>
+							</td>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_preview', {'id': tuto.id }) }}">{{ tuto.title }}</a>
+							</td>
+							<td>{{ tuto.updatedAt|date('Y-m-d H:i:s') }}</td>
+							<td>
+								<a href="{{ path('SdtTutorialBundle_tutorial_preview', {'id': tuto.id }) }}"><i class="icon-search"></i></a>
+
+								<a href="{{ path('SdtTutorialBundle_tutorial_update', {'id': tuto.id }) }}"><i class="icon-pencil"></i></a>
+
+								<a href="{{ path('SdtTutorialBundle_tutorial_delete', {'id': tuto.id }) }}"><i class="icon-remove"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

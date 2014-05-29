@@ -1,0 +1,83 @@
+{% extends "SdtForumBundle::layout.html.twig" %}
+
+{% block title %}{{ topic.subject }}{% endblock %}
+
+{% block content %}
+	<h1>{{ topic.subject }}</h1>
+
+    <div class="bloc">
+        <div class="title">
+            <h2>{{ topic.subject }}</h2>
+        </div>
+        <div class="content">
+        	<div class="submit">
+        		<a href="#sujet"><input type="submit" value="Répondre au sujet" /></a>
+        	</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Auteur</th>
+						<th>Message</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for post in pagination %}
+						<tr id="message-{{ post.id }}">
+							<td>
+								<div style="padding:3px;">
+									<div style="margin-bottom:3px;">
+										<a href="{{ path('application_sonata_user_profile', {'id': post.author.id, 'username': post.author.username }) }}">{{ post.author.username }}</a>
+									</div>
+
+									{% if post.author.avatar is defined %}
+										<a href="{{ path('application_sonata_user_profile', {'id': post.author.id, 'username': post.author.username }) }}">{% media post.author.avatar, 'small' %}</a>
+									{% else %}
+									{% endif %}
+								</div>
+							</td>
+							<td>
+								Posté {{ time_diff(post.createdAt) }}<br />
+								{{ post.message|purify }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<div class="submit">
+        		<a href="#sujet"><input type="submit" value="Répondre au sujet" /></a>
+        	</div>
+
+			<div class="navigation" style="float: right;">
+			    {{ pagination.render()|raw }}
+			</div>
+		</div>
+	</div>
+
+	<div class="bloc">
+        <div class="title">
+            <h2>Ajouter une réponse</h2>
+        </div>
+        <div class="content">
+			<form id="sujet" action="{{ path('SdtForumBundle_topic_show', {'slug': topic.slug }) }}" method="post" {{ form_enctype(form) }}>
+
+				<div class="input textarea">
+					<label>Message</label>
+					{{ form_widget(form.message, { 'attr': {'class': 'tinymce', 'rows': '15', 'data-theme': 'simple'} }) }}
+					<a href="{{ path('application_sonata_media_upload') }}" data-toggle="modal" target="_blank">Upload d'un media</a>
+				</div>
+
+				<div class="submit">
+					<input type="submit" />
+				</div>
+
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

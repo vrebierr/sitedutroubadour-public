@@ -1,0 +1,21 @@
+parameters:
+#    sdt_tutorial.example.class: Sdt\TutorialBundle\Example
+
+services:
+    sdt.tutorial.admin.tutorial:
+        class: Sdt\TutorialBundle\Admin\TutorialAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tutoriels, label: Tutoriels }
+        arguments: [null, Sdt\TutorialBundle\Entity\Tutorial,SonataAdminBundle:CRUD]
+
+    sdt.tutorial.admin.tutorial_comment:
+        class: Sdt\TutorialBundle\Admin\TutorialCommentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tutoriels, label: Commentaires }
+        arguments: [null, Sdt\TutorialBundle\Entity\TutorialComment,SonataAdminBundle:CRUD]
+
+    sdt.tutorial.admin.tutorial_category:
+        class: Sdt\TutorialBundle\Admin\TutorialCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Tutoriels, label: Categories }
+        arguments: [null, Sdt\TutorialBundle\Entity\TutorialCategory,SonataAdminBundle:CRUD]

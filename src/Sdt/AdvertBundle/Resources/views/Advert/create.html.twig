@@ -1,0 +1,90 @@
+{% extends "SdtAdvertBundle::layout.html.twig" %}
+
+{% block content %}
+	<div class="page-header">
+		<h1>Ajouter une annonce</h1>
+	</div>
+	<form class="well form-horizontal" action="{{ path('SdtAdvertBundle_advert_create') }}" method="post" {{ form_enctype(form) }}>
+		<fieldset>
+			<legend>Vous êtes</legend>
+
+			<div class="control-group">
+				<label class="control-label">Categorie</label>
+				<div class="controls">
+					{{ form_widget(form.category, { 'attr': {'class': 'input-xlarge'} }) }}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Age</label>
+				<div class="controls">
+					{{ form_widget(form.ageMin, { 'attr': {'style': 'width: 35px'} }) }} -
+					{{ form_widget(form.ageMax, { 'attr': {'style': 'width: 35px'} }) }} Ans
+					<div id="slider-range" style="width: 300px; margin: 10px;"></div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Dans la région de</label>
+				<div class="controls">
+					{{ form_widget(form.locale, { 'attr': {'class': 'input-xlarge'} }) }}
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>À la recherche d'un</legend>
+
+			<div class="control-group">
+				<label class="control-label">Categories</label>
+				<div class="controls">
+					<label class="checkbox">
+						{{ form_widget(form.lookingFor, { 'attr': {'class': 'input-xlarge'} }) }}
+					</label>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Votre annonce</legend>
+
+			<div class="control-group">
+				<label class="control-label">Titre de l'annonce</label>
+				<div class="controls">
+					{{ form_widget(form.title, { 'attr': {'class': 'input-xlarge'} }) }}
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Message</label>
+				<div class="controls">
+					{{ form_widget(form.message, { 'attr': {'class': 'input-xlarge tinymce', 'rows': '15', 'data-theme': 'simple', 'style': 'width: 100%;'} }) }}
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<input type="submit" class="btn btn-primary" />
+			</div>
+
+			{{ form_rest(form) }}
+			
+		</fieldset>
+	</form>
+{% endblock %}
+
+{% block javascripts %}
+	$(document).ready(function($) {
+		$( "#slider-range" ).slider({
+			range: true,
+			min: 13,
+			max: 60,
+			values: [ 18, 25 ],
+			slide: function( event, ui ) {
+				$( "#sdt_advertbundle_adverttype_ageMin" ).val( ui.values[ 0 ]);
+				$( "#sdt_advertbundle_adverttype_ageMax" ).val( ui.values[ 1 ]);
+			}
+		});
+		$( "#sdt_advertbundle_adverttype_ageMin" ).val($( "#slider-range" ).slider( "values", 0 ));
+		$( "#sdt_advertbundle_adverttype_ageMax" ).val($( "#slider-range" ).slider( "values", 1 ));
+	});
+{% endblock %}

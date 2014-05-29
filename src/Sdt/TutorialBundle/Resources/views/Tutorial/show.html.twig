@@ -1,0 +1,28 @@
+{% extends "SdtTutorialBundle::layout.html.twig" %}
+
+{% block title %}{{ tuto.title }}{% endblock %}
+
+{% block content %}>
+	<h1>
+		{{ tuto.title }}
+	</h1>
+
+	<div class="bloc">
+		<div class="title">
+			<h2>Tutoriel</h2>
+	   	 </div>
+	   	 <div class="content">
+			{% thumbnail tuto.media, 'small' %}
+			{{ tuto.content|purify }}
+		</div>
+	</div>
+
+	<div class="bloc">
+	  	  <div class="title">
+			<h2>Commentaires</h2>
+	   	 </div>
+	   	 <div class="content">
+			{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'tutorial_' ~ tuto.id } %}
+		</div>
+	</div>
+{% endblock %}

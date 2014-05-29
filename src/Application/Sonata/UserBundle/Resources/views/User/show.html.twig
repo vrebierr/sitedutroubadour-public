@@ -1,0 +1,40 @@
+{% extends "ApplicationSonataUserBundle::layout.html.twig" %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+	<h1>{{ user.username }}</h1>
+
+    <div class="bloc left">
+        <div class="title">
+            <h2>Informations générales</h2>
+        </div>
+        <div class="content">
+			<ul>
+				<li><strong>Avatar:</strong> {% thumbnail user.avatar, 'small' with {'itemprop': 'image'} %}</li>
+				<li><strong>Pseudo:</strong> {{ user.username }}</li>
+				<li>
+					<strong>Groupes:</strong>
+					<ul>
+						{% for group in user.groups %}
+							<li>{{ group }}</li>
+						{% endfor %}
+					</ul>
+				</li>
+				<li><strong>Date d'inscription:</strong> {{ user.createdAt|date('Y-m-d H:i:s') }}</li>
+				<li><strong>Dernière connexion:</strong> {{ time_diff(user.lastLogin) }}</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="bloc right">
+        <div class="title">
+            <h2>Actions</h2>
+        </div>
+        <div class="content">
+			<ul>
+				<li><a href="{{ path('SdtMessageBundle_message_thread_new', {'id': user.id }) }}">Envoyer un message</a></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+parameters:
+#    sdt_score.example.class: Sdt\ScoreBundle\Example
+
+services:
+    sdt.score.admin.score:
+        class: Sdt\ScoreBundle\Admin\ScoreAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Partitions, label: Partitions }
+        arguments: [null, Sdt\ScoreBundle\Entity\Score,SonataAdminBundle:CRUD]
+
+    sdt.score.admin.score_category:
+        class: Sdt\ScoreBundle\Admin\ScoreCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Partitions, label: Categories }
+        arguments: [null, Sdt\ScoreBundle\Entity\ScoreCategory,SonataAdminBundle:CRUD]
